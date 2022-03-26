@@ -68,22 +68,21 @@ main:
     sw $t2, VELOCITY
         
     # YOUR CODE GOES HERE!!!!!!
-   
+
     li $a0, 2
-    sw $a0, 0xffff2004 ($zero)
+    sw $a0, 0xffff2004 ($zero) 
     
     infinite_loop:
-	li $t0, 10000
-	sw $t0, 0xffff001c ($zero)
+	li $t1, 10000
+	sw $t1, 0xffff001c ($zero)
     	sw $a0, 0xffff0010 ($zero)
     	
-    	li $t3, 2
+    	li $t3, 0
     	sw $t3, CHARGE_SHOT
-    	
-    	#shoot
     	sw $t3, SHOOT
     	
     	li $t3, 2
+	sw $t3, CHARGE_SHOT
     	sw $t3, SHOOT
     	j infinite_loop
     
