@@ -91,7 +91,7 @@ loop: # Once done, enter an infinite loop so that your bot can be graded by QtSp
     
 
 .kdata
-chunkIH:    .space 40
+chunkIH:    .space 40. 
 non_intrpt_str:    .asciiz "Non-interrupt exception\n"
 unhandled_str:    .asciiz "Unhandled interrupt type\n"
 .ktext 0x80000180
