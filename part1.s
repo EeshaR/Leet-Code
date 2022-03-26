@@ -77,7 +77,7 @@ main:
 	sw $t1, 0xffff001c ($zero)
     	sw $a0, 0xffff0010 ($zero)
     	
-    	li $t3, 0
+    	li $t3, 1
     	sw $t3, CHARGE_SHOT
     	sw $t3, SHOOT
     	
