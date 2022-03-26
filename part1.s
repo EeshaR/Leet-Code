@@ -80,35 +80,21 @@ main:
     lw $t6, BOT_Y
     
     the_loop:
-	    lw		$t7, BOT_X
-	    bne		$t7, $t5, actions
-	    lw		$t7, BOT_Y
-	    beq		$t7, $t6, repeat 
+	    lw	$t7, BOT_X
+	    bne	$t7, $t5, actions
+	    lw	$t7, BOT_Y
+	    beq	$t7, $t6, repeat 
         
     actions:
-	    lw		$t1, BOT_X
-	    lw		$t2, BOT_Y
-	    la		$t4, scanner_wb
-        sw		$t4, USE_SCANNER
-        lb		$t4, 2($t4)
-        andi	$t0, $t4, 1
-        beq		$t0, $0, shoot
-        li		$t0, 5
-        sw		$t0, ANGLE
-        sw		$0, ANGLE_CONTROL
-        j		repeat
+	    lw	$t5, BOT_X
+	    lw	$t6, BOT_Y
+	    j shoot 
+	    j charged_shoot 
+            j repeat
     shoot:
-        li		$t0, 2
-        beq		$t0, $t4, shoot_once
-        andi	$t0, $t4, 16
-        bne		$t0, $0, shoot_once
-        andi	$t0, $t4, 8
-        bne		$t0, $0, shoot_twice
-        j		continue
-    shoot_twice:
-	    sw		$0, SHOOT_UDP_PACKET
-    shoot_once:
-        sw		$0, SHOOT_UDP_PACKET
+        sw $0, SHOOT
+    charged_shoot:
+	    sw $0, CHARGE_SHOT
     repeat:
         j		the_loop
     retq:
