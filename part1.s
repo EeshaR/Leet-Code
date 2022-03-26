@@ -68,37 +68,24 @@ main:
     sw $t2, VELOCITY
         
     # YOUR CODE GOES HERE!!!!!!
+   
+    li $a0, 2
+    sw $a0, 0xffff2004 ($zero)
     
-    li $t3, 25
-    sw $t3, ANGLE
-    li $t3, 50
-    sw $t3, ANGLE_CONTROL
-    li $t4, 50
-    sw $t4, VELOCITY
-    
-    lw $t5, BOT_X
-    lw $t6, BOT_Y
-    
-    the_loop:
-	    lw	$t7, BOT_X
-	    bne	$t7, $t5, actions
-	    lw	$t7, BOT_Y
-	    beq	$t7, $t6, repeat 
-        
-    actions:
-	    lw	$t5, BOT_X
-	    lw	$t6, BOT_Y
-	    j shoot 
-	    j charged_shoot 
-            j repeat
-    shoot:
-        sw $0, SHOOT
-    charged_shoot:
-	    sw $0, CHARGE_SHOT
-    repeat:
-        j		the_loop
-    retq:
-        jr		$ra
+    infinite_loop:
+	li $t0, 10000
+	sw $t0, 0xffff001c ($zero)
+    	sw $a0, 0xffff0010 ($zero)
+    	
+    	li $t3, 2
+    	sw $t3, CHARGE_SHOT
+    	
+    	#shoot
+    	sw $t3, SHOOT
+    	
+    	li $t3, 2
+    	sw $t3, SHOOT
+    	j infinite_loop
     
 loop: # Once done, enter an infinite loop so that your bot can be graded by QtSpimbot once 10,000,000 cycles have elapsed
     j loop
